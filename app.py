@@ -4,11 +4,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
 import tensorflow as tf
+import os
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import load_model
 
 # Load the model (ensure you have a trained model saved)
-MODEL_PATH = "C:\\Users\\AmeyV\\OneDrive\\Desktop\\AIML\\Projects material\\Stockmarketprediction\\Model-13.keras"
+
+from tensorflow.keras.models import load_model
+
+# Use relative path instead of absolute path
+MODEL_PATH = os.path.join(os.getcwd(), "Model-13.keras")
+
+try:
+    model = load_model(MODEL_PATH)
+except Exception as e:
+    st.error(f"Error loading model: {e}")
+    st.stop()
+
   # Change this if needed
 try:
     model = load_model(MODEL_PATH)
